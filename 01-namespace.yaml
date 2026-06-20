@@ -1,0 +1,8 @@
+appVersion: v1
+Kind: Namespace
+metadata:
+  name: roboshop-dev
+  labels:
+    environment: dev
+    project: roboshop
+    team: devops

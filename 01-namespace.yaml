@@ -1,7 +1,7 @@
 appVersion: v1
 Kind: Namespace
 metadata:
-  name: roboshop-dev
+  name: roboshop
   labels:
     environment: dev
     project: roboshop

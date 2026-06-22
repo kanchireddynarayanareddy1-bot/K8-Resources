@@ -6,3 +6,4 @@ data:
   course: "DevOps"
   topic: "Kubernetes" 
   duration: "2 months"
+  trainer: "ShivaKumar"

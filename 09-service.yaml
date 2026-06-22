@@ -7,6 +7,7 @@ spec:
     project: roboshop
     component: frontend
     environment: dev
+    version: v1
   ports:
     - protocol: TCP
       port: 80 #service port

@@ -20,7 +20,7 @@ metadata:
   name: ebs-pvc
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
-  volumeName: test-ebs
+  volumeName: ebs-pv
   accessModes:
     - ReadWriteOnce
   resources:

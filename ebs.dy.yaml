@@ -17,7 +17,7 @@ metadata:
   labels:
     purpose: ebs-dynamic
 spec:
-  containers: 
+  Container: 
     name: nginx
     image: nginx
     volumeMounts:

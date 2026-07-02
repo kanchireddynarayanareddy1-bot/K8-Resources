@@ -9,8 +9,8 @@ data:
   mapUsers: |
     - groups:
       - roboshop-trainer-role
-      userarn: arn:aws:iam::119317299030:user/chinna
-      username: chinna
+      userarn: arn:aws:iam::119317299030:user/ravi
+      username: ravi
 kind: ConfigMap
 
 metadata:

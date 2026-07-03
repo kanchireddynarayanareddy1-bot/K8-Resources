@@ -5,5 +5,5 @@ metadata:
   name: roboshop-trainer-role
 rules:
 - apiGroups: [""] # "" indicates the core API group
-  resources: ["pods"]
+  resources: ["pods","roles"]
   verbs: ["get", "watch", "list"]

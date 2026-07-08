@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Replicaset
+metadata:
+  name: nginx-rs
+  labels:
+    project: roboshop
+    component: frontend
+    environment: dev
+    purpose: rs
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        project: roboshop
+        component: frontend
+        environment: dev
+        purpose: rs 
+        # This is the label which will be used by replicaset to identify the pods which it needs to manag
+    template:
+      metadata:
+        labels:
+          project: roboshop
+          component: frontend
+          environment: dev
+          purpose: rs
+      spec:
+        containers:
+          - name: nginx
+            image: nginx      

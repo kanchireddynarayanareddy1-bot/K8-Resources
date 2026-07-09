@@ -1,62 +1,45 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ebs-static
+  name: ebs-pv
 spec:
   accessModes:
   - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
   capacity:
     storage: 5Gi
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: vol-08ea957320f059f49
-  
+    volumeHandle: vol-083afa70bd9c2ddea
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ebs-static
+  name: ebs-claim
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
-  volumeName: ebs-static
+  volumeName: ebs-pv
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi  
+      storage: 5Gi    
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
-  labels:
-    purpose: ebs-static
-
 spec:
   containers:
   - name: nginx
     image: nginx
+    nodeSelector:
+      topology.kubernetes.io/zone: us-east-1b
     volumeMounts:
-    - name: nginx-html
+    - name: persistent-storage
       mountPath: /usr/share/nginx/html
-  nodeSelector:  
-    topology.kubernetes.io/zone: us-east-1c    
   volumes:
-  - name: nginx-html
+  - name: persistent-storage
     persistentVolumeClaim:
-      claimName: ebs-static      
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-spec:
-  type: LoadBalancer
-  selector:  
-    purpose: ebs-static   
-  ports:
-    - protocol: TCP
-      port: 80 #service port
-      targetPort: 80 #container port
+      claimName: ebs-claim     

@@ -8,7 +8,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  storageClassName: " "
+  storageClassName: ""
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com
@@ -40,6 +40,8 @@ spec:
     volumeMounts:
     - name: persistent-storage
       mountPath: /usr/share/nginx/html
+  nodeSelector:
+      topology.kubernetes.io/zone: us-east-1b    
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
@@ -57,5 +59,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    containerPort: 80
+    targetPort: 80
     nodePort: 30080

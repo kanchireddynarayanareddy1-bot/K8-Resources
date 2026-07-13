@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-statefulset
+  labels:
+    project: roboshop
+    component: frontend
+    env: dev
+spec:
+  replicas: 5
+  selector:
+     matchLabels:
+       project: roboshop
+       component: frontend
+       env: dev
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        component: frontend
+        env: dev
+    spec:
+      containers:
+        - name: nginx
+          image: nginx      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    project: roboshop
+    component: frontend
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-headless-service
+spec:
+  clusterIP: None
+  selector:
+    project: roboshop
+    component: frontend
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80      

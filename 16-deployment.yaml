@@ -27,3 +27,18 @@ spec:
       containers:
         - name: nginx
           image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:   
+  selector:
+    project: roboshop
+    component: frontend
+    environment: dev
+    purpose: dm
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80          

@@ -10,7 +10,12 @@ data:
     - groups:
       - system:masters
       userarn: arn:aws:iam::119317299030:user/chinna
-      username: chinna   
+      username: chinna 
+  mapUsers: |
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::119317299030:user/Reddy
+      username: Reddy      
 kind: ConfigMap
 metadata:
   creationTimestamp: "2026-07-15T02:28:59Z"
